@@ -1,0 +1,97 @@
+<div class="col-md-1 mb-3">
+  <button id="btn1" class="btn float-lg-end" matTooltip="Add Skill Category" style="border-radius: 50%;" (click)="addNewRow()">
+    <i class="fa-solid fa-plus"></i>
+  </button>
+  <div   id="popupForm" class="popup">
+    <form class="popup-content">
+      <!-- Your form fields go here -->
+      <span class="close" onclick="closePopup()">&times;</span>
+    </form>
+  </div>
+
+  
+</div>
+
+<div class="container">
+  <mat-accordion>
+    <mat-expansion-panel class="subCategory" *ngFor="let item of accordionData" (opened)="onSelectSkillCategory(item.referenceDetailValue)">
+      <mat-expansion-panel-header>
+        <mat-panel-title  class="panelTitle">
+          {{ item.referenceDetailValue }} 
+          <!-- {{accordionSubData.length}} -->
+        </mat-panel-title>
+        <!-- <mat-panel-description>
+          further the sub skills under this
+        </mat-panel-description> -->
+      </mat-expansion-panel-header>
+      
+      <!-- Button for adding new sub-skills -->
+      <button class="btn float-lg-end" matTooltip="Add Sub Skill Category"  (click)="addNewSubSkill()">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      
+      <!-- Child expansion panels -->
+      
+        <mat-expansion-panel class="subCategory" style="box-shadow: none;" [expanded]="false" [disabled]="true" >
+          <mat-expansion-panel-header>
+           
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+        <div *ngIf="accordionSubData">
+        <mat-expansion-panel class="skillName" *ngFor="let subItem of accordionSubData"  (opened)="onSelectTechCat(subItem.referenceDetailId)">
+          <mat-expansion-panel-header>
+     
+            <mat-panel-title class="panelTitle">
+              {{ subItem.referenceDetailValue }}
+              <span
+                *ngIf="selectedSubItem && selectedSubItem.referenceDetailId === subItem.referenceDetailId && accordionSubData.length > 0">-{{
+                size }}</span>
+            </mat-panel-title>
+            <!-- <mat-panel-description>
+              further the skills under this
+            </mat-panel-description> -->
+                     <!-- Button for adding new sub-skills -->
+      
+          </mat-expansion-panel-header>
+          <button class="btn float-lg-end" matTooltip="Add Skill"  (click)="addNewSkill()">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+         
+          <!-- Second level of child expansion panels -->
+          <mat-expansion-panel class="skillName" style="box-shadow: none;"  >
+            <mat-expansion-panel-header>
+             
+            </mat-expansion-panel-header>
+          </mat-expansion-panel>
+          <mat-expansion-panel class="subCategory" *ngFor="let item of allSkills" [disabled]="true"  [expanded]="false" [hideToggle]="true" (opened)="onSelectSkill(item.skillId)">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="panelTitle" id="status" >
+                <p> {{ item.skillName }}</p>
+                <mat-radio-group [(ngModel)]="item.status" class="custom-radio-group">
+                  <mat-radio-button  [value]="1"><span class="status">Active</span></mat-radio-button>
+                  <mat-radio-button [value]="0"><span class="status">Inactive</span></mat-radio-button>
+                
+                  <button id="update" matTooltip="update" class="btn float-lg-end"  (click)="updateStatus(item)">
+                   
+                    <i class="fas fa-edit"></i>
+                    <!-- <i class="fas fa-retweet"></i> -->
+
+                  </button>
+                </mat-radio-group>
+              </mat-panel-title>
+              
+              
+              
+            </mat-expansion-panel-header>
+          
+          
+          
+          
+          
+            <!-- --------------------------------------------->
+          </mat-expansion-panel>
+        </mat-expansion-panel>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

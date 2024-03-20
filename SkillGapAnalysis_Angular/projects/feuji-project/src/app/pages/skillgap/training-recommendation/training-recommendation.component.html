@@ -1,0 +1,64 @@
+<mat-card>
+  <mat-card-content>
+    <mat-tab-group>
+      <mat-tab label="Training Recommendations(High SkillGap)" style="display: flex;flex-direction: row;color: black !important;">
+        <div id="section2">
+          <div id="recommend-training" *ngFor="let skill of highGapSkills">
+            <div class="container">
+              <div id="firstDiv">
+                <div class="circle">
+                  <img src="../../../../assets/img/lessSkill.png" id="image">
+                </div>
+                <div class="eachSkill">
+                  <p class="skillname">{{skill.skillName}}</p>
+                </div>
+              </div>       
+              <div class="secondDiv">
+                <div class="list">                
+                  <div >
+                    <p ><b>Current:</b>{{skill.acReferenceDetailsValues}}</p>
+                  </div>
+                  <div >
+                    <p ><b>Recommend:</b>{{skill.exReferenceDetailsValues}}</p>
+                  </div>
+                  <div >
+                    <p ><b>Description:</b>{{skill.description}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Training Recommendations(Moderate SkillGap)" id="header">
+        <div id="section2">
+          <div id="recommend-training" *ngFor="let skill of moderateGapSkills">
+            <div class="container">
+              <div id="firstDiv">
+                <div class="circle">
+                  <img src="../../../../assets/img/lowgap.png" id="image">
+                </div>
+                <div class="eachSkill">
+                  <p class="skillname">{{skill.skillName}}</p>
+                </div>
+              </div>       
+              <div class="secondDiv">
+                <div class="list">                
+                  <div >
+                    <p class="description"><b>Current:</b>{{skill.acReferenceDetailsValues}}</p>
+                  </div>
+                  <div >
+                    <p class="description"><b>Recommend:</b>{{skill.exReferenceDetailsValues}}</p>
+                  </div>
+                  <div >
+                    <p class="description"><b>Description:</b>{{skill.description}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>
